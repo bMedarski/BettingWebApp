@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-Web-0A345104-109B-4958-BB1D-7D75CB8E6886</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BettingApp.Data.Common\BettingApp.Data.Common.csproj" />
+    <ProjectReference Include="..\BettingApp.Data.Models\BettingApp.Data.Models.csproj" />
+    <ProjectReference Include="..\BettingApp.Data\BettingApp.Data.csproj" />
+    <ProjectReference Include="..\BettingApp.Services.DataServices\BettingApp.Services.DataServices.csproj" />
+    <ProjectReference Include="..\BettingApp.Services.Mapping\BettingApp.Services.Mapping.csproj" />
+    <ProjectReference Include="..\BettingApp.Services.Models\BettingApp.Services.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+</Project>

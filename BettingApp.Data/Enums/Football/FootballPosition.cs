@@ -1,6 +1,6 @@
 ﻿namespace BettingApp.Data.Enums.Football
 {
-	public enum Positions
+	public enum FootballPosition
 	{
 		Goalkeeper = 1,
 		Defender = 2,

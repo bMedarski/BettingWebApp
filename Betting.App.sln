@@ -15,13 +15,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingApp.Data", "BettingA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingApp.Data.Common", "BettingApp.Data.Common\BettingApp.Data.Common.csproj", "{86AC96F9-4A74-4FC2-9A56-ADC3D6830D6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingApp.Data.Models", "BettingApp.Data.Models\BettingApp.Data.Models.csproj", "{D1959232-E2B8-44F1-A485-459DD915196C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingApp.Data.Models", "BettingApp.Data.Models\BettingApp.Data.Models.csproj", "{D1959232-E2B8-44F1-A485-459DD915196C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingApp.Services.Models", "BettingApp.Services.Models\BettingApp.Services.Models.csproj", "{5CB67DDE-54FA-4220-8C92-4E3D11076BE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingApp.Services.Mapping", "BettingApp.Services.Mapping\BettingApp.Services.Mapping.csproj", "{332F2573-2C9E-4063-B860-0FE30C303622}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingApp.Services.Mapping", "BettingApp.Services.Mapping\BettingApp.Services.Mapping.csproj", "{332F2573-2C9E-4063-B860-0FE30C303622}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BettingApp.Services.DataServices", "BettingApp.Services.DataServices\BettingApp.Services.DataServices.csproj", "{D9ED5DF7-299A-4A51-8834-A9FFDB36CB88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingApp.Services.DataServices", "BettingApp.Services.DataServices\BettingApp.Services.DataServices.csproj", "{D9ED5DF7-299A-4A51-8834-A9FFDB36CB88}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BettingApp.DataServicesTests", "BettingApp.DataServicesTests", "{F14CB504-A97C-47C2-A2E0-A42BFE91ADA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MountainSeekerApp.Data", "MountainSeekerApp.Data\MountainSeekerApp.Data.csproj", "{CF50129D-026A-4BCD-8A94-2FAF7D679C20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MountainSeeker.Data.Models", "MountainSeeker.Data.Models\MountainSeeker.Data.Models.csproj", "{2F2A54DE-E60F-4885-888F-045134D7A77D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingApp.Services.ViewModels", "BettingApp.Services.ViewModels\BettingApp.Services.ViewModels.csproj", "{F84BA583-625C-4005-A996-84344EAD428E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +51,6 @@ Global
 		{D1959232-E2B8-44F1-A485-459DD915196C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1959232-E2B8-44F1-A485-459DD915196C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1959232-E2B8-44F1-A485-459DD915196C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CB67DDE-54FA-4220-8C92-4E3D11076BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CB67DDE-54FA-4220-8C92-4E3D11076BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CB67DDE-54FA-4220-8C92-4E3D11076BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CB67DDE-54FA-4220-8C92-4E3D11076BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{332F2573-2C9E-4063-B860-0FE30C303622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{332F2573-2C9E-4063-B860-0FE30C303622}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{332F2573-2C9E-4063-B860-0FE30C303622}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +59,18 @@ Global
 		{D9ED5DF7-299A-4A51-8834-A9FFDB36CB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9ED5DF7-299A-4A51-8834-A9FFDB36CB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9ED5DF7-299A-4A51-8834-A9FFDB36CB88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF50129D-026A-4BCD-8A94-2FAF7D679C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF50129D-026A-4BCD-8A94-2FAF7D679C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF50129D-026A-4BCD-8A94-2FAF7D679C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF50129D-026A-4BCD-8A94-2FAF7D679C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F2A54DE-E60F-4885-888F-045134D7A77D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2A54DE-E60F-4885-888F-045134D7A77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2A54DE-E60F-4885-888F-045134D7A77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2A54DE-E60F-4885-888F-045134D7A77D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F84BA583-625C-4005-A996-84344EAD428E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F84BA583-625C-4005-A996-84344EAD428E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F84BA583-625C-4005-A996-84344EAD428E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F84BA583-625C-4005-A996-84344EAD428E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,9 +79,12 @@ Global
 		{A1CE80E3-4FCC-4DBD-AED1-CFE2975259F2} = {44062ACE-A31F-4EA6-A545-F0D866EE3B9C}
 		{86AC96F9-4A74-4FC2-9A56-ADC3D6830D6D} = {44062ACE-A31F-4EA6-A545-F0D866EE3B9C}
 		{D1959232-E2B8-44F1-A485-459DD915196C} = {44062ACE-A31F-4EA6-A545-F0D866EE3B9C}
-		{5CB67DDE-54FA-4220-8C92-4E3D11076BE5} = {6E8578B7-24A3-4656-A0EF-16A65B56459F}
 		{332F2573-2C9E-4063-B860-0FE30C303622} = {6E8578B7-24A3-4656-A0EF-16A65B56459F}
 		{D9ED5DF7-299A-4A51-8834-A9FFDB36CB88} = {6E8578B7-24A3-4656-A0EF-16A65B56459F}
+		{F14CB504-A97C-47C2-A2E0-A42BFE91ADA6} = {33B6D67D-691D-48AD-B90A-09427E0934FC}
+		{CF50129D-026A-4BCD-8A94-2FAF7D679C20} = {44062ACE-A31F-4EA6-A545-F0D866EE3B9C}
+		{2F2A54DE-E60F-4885-888F-045134D7A77D} = {44062ACE-A31F-4EA6-A545-F0D866EE3B9C}
+		{F84BA583-625C-4005-A996-84344EAD428E} = {6E8578B7-24A3-4656-A0EF-16A65B56459F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A65FC975-53AA-4E6F-B70E-D529AFE6842B}

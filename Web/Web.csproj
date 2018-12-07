@@ -17,7 +17,7 @@
     <ProjectReference Include="..\BettingApp.Data\BettingApp.Data.csproj" />
     <ProjectReference Include="..\BettingApp.Services.DataServices\BettingApp.Services.DataServices.csproj" />
     <ProjectReference Include="..\BettingApp.Services.Mapping\BettingApp.Services.Mapping.csproj" />
-    <ProjectReference Include="..\BettingApp.Services.Models\BettingApp.Services.Models.csproj" />
+    <ProjectReference Include="..\BettingApp.Services.ViewModels\BettingApp.Services.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>

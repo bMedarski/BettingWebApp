@@ -1,10 +1,10 @@
 ﻿namespace BettingApp.Data
 {
-	using System;
 	using Common;
+	using Enums.Football;
 
 	public class Player:Competitor
 	{
-		public Enum Position { get; set; }
+		public FootballPosition Position { get; set; }
 	}
 }

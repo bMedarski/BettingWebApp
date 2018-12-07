@@ -2,3 +2,38 @@
     ViewData["Title"] = "Home Page";
 }
 
+<main class="bg-light" id="main-section">
+	<nav class="">
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<a class="nav-item nav-link active tab-left" id="nav-incoming-tab" data-toggle="tab" href="#nav-incoming" role="tab" aria-controls="nav-incoming" aria-selected="true">
+				<img class="img-thumbnail img-logo" src="images/Logos/football.jpg">
+			</a>
+			<a class="nav-item nav-link tab-middle" id="nav-basketball-tab" data-toggle="tab" href="#nav-basketball" role="tab" aria-controls="nav-basketball" aria-selected="false">
+				<img class="img-thumbnail img-logo" src="images/Logos/basketball.png">
+			</a>
+			<a class="nav-item nav-link tab-middle" id="nav-tennis-tab" data-toggle="tab" href="#nav-tennis" role="tab" aria-controls="nav-tennis" aria-selected="false">
+				<img class="img-thumbnail img-logo" src="images/Logos/tennis.png">
+			</a>
+			<a class="nav-item nav-link tab-middle" id="nav-volleyball-tab" data-toggle="tab" href="#nav-volleyball" role="tab" aria-controls="nav-volleyball" aria-selected="false">
+				<img class="img-thumbnail img-logo" src="images/Logos/volleyball.jpg">
+			</a>
+			<a class="nav-item nav-link tab-right" id="nav-hockey-tab" data-toggle="tab" href="#nav-hockey" role="tab" aria-controls="nav-hockey" aria-selected="false">
+				<img class="img-thumbnail img-logo" src="images/Logos/hockey.jpg">
+			</a>
+		</div>
+	</nav>
+	<div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade show active container" id="nav-incoming" role="tabpanel" aria-labelledby="nav-incoming-tab">
+			<h6 class="container-fluid bg-gray mt-1 mb-1 text-color-yellow p-1 date-line">Friday, 05.12.2018</h6>
+			@for (var i = 0; i < 10; i++)
+			{
+				<partial name="_matchesTable" />
+			}
+			
+		</div>
+		<div class="tab-pane fade" id="nav-basketball" role="tabpanel" aria-labelledby="nav-past-tab">match2</div>
+		<div class="tab-pane fade" id="nav-tennis" role="tabpanel" aria-labelledby="nav-past-tab">match2</div>
+		<div class="tab-pane fade" id="nav-volleyball" role="tabpanel" aria-labelledby="nav-past-tab">match2</div>
+		<div class="tab-pane fade" id="nav-hockey" role="tabpanel" aria-labelledby="nav-past-tab">match2</div>
+	</div>
+</main>

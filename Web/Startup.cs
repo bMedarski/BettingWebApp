@@ -11,12 +11,17 @@ namespace Web
 	using BettingApp.Data;
 	using BettingApp.Data.Common;
 	using BettingApp.Data.Models;
+	using BettingApp.Services.DataServices;
+	using BettingApp.Services.DataServices.Contracts;
+	using BettingApp.Services.Mapping;
+	using BettingApp.Services.ViewModels.Competition;
+	using Controllers;
 
 	public class Startup
 	{
 		public Startup(IConfiguration configuration)
 		{
-			Configuration = configuration;
+			this.Configuration = configuration;
 		}
 
 		public IConfiguration Configuration { get; }
@@ -24,6 +29,9 @@ namespace Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			AutoMapperConfig.RegisterMappings(
+				typeof(CreateCompetitionInputModel).Assembly
+				);
 			services.Configure<CookiePolicyOptions>(options =>
 			{
 				// This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -50,6 +58,7 @@ namespace Web
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 			services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+			services.AddScoped<ICompetitionsService, CompetitionsService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

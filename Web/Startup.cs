@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Web
 {
+	using System.Reflection;
 	using BettingApp.Data;
 	using BettingApp.Data.Common;
 	using BettingApp.Data.Models;
@@ -15,7 +16,6 @@ namespace Web
 	using BettingApp.Services.DataServices.Contracts;
 	using BettingApp.Services.Mapping;
 	using BettingApp.Services.ViewModels.Competition;
-	using Controllers;
 
 	public class Startup
 	{
@@ -30,8 +30,9 @@ namespace Web
 		public void ConfigureServices(IServiceCollection services)
 		{
 			AutoMapperConfig.RegisterMappings(
-				typeof(CreateCompetitionInputModel).Assembly
-				);
+				typeof(CreateCompetitionInputModel).Assembly,
+				Assembly.GetExecutingAssembly());
+
 			services.Configure<CookiePolicyOptions>(options =>
 			{
 				// This lambda determines whether user consent for non-essential cookies is needed for a given request.

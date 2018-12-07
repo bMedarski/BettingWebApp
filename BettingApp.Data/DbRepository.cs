@@ -11,7 +11,7 @@ namespace BettingApp.Data
 		where TEntity : class
 	{
 		private readonly BettingAppDbContext context;
-		private DbSet<TEntity> dbSet;
+		private readonly DbSet<TEntity> dbSet;
 
 		public DbRepository(BettingAppDbContext context)
 		{

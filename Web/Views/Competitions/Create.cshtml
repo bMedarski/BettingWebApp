@@ -11,11 +11,14 @@
 	<label asp-for="Name"></label>
 	<input asp-for="Name" />
 
-	<select asp-for="SportId" asp-items="Model.Sports">
+	@*<select asp-for="SportId" asp-items="Model.Sports" id="">
 		<option selected="selected" value="">Please select</option>
+	</select>*@
+	<select asp-for="SportId" id="sportsMenu">
+		<option selected="selected" disabled>Please select</option>
 	</select>
 	<select asp-for="SeasonId" id="seasonMenu">
-		<option selected="selected" value="">Please select</option>
+		<option selected="selected" disabled>Please select</option>
 	</select>
 	<input type="submit" name="name" value="Create" />
 </form>
@@ -26,15 +29,23 @@
 		
 		$(document).ready(function () {
 
-			$("#SportId").change(function () {
-				var sportId = $("#SportId").val();
+			$.ajax({
+				url: "/Sports/AllSports",
+				type: "GET",
+				dataType: "json",
+				success: function(sports) {
+					$.each(sports, function (index, value) {
+						$('#sportsMenu').append('<option value="' + value.id + '">' + value.name + '</option>');
+					});
+				}
+			});
 
-				var dropdown = $('#SeasonId');
-				dropdown.empty();
-				dropdown.append('<option selected="true" disabled>Choose Season</option>');
-				dropdown.prop('selectedIndex', 0);
+			//TODO show dropdown list only on change
 
-				var request = $.ajax({
+			$("#sportsMenu").change(function () {
+				var sportId = $("#sportsMenu").val();
+				console.log(sportId)
+				$.ajax({
 					url: "/Seasons/AllSeasons",
 					data: { sport: sportId },
 					type: "POST",

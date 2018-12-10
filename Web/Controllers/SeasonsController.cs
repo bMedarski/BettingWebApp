@@ -23,9 +23,9 @@ namespace Web.Controllers
 
         public IActionResult Create()
         {
-	        var sports = this.SportsService.GetAllAsSelectLisItems().ToList();
+	        var sports = this.SportsService.GetAllSports().ToList();
 			//TODO to return status code 201
-            return this.View(new CreateSeasonInputModel{Sports=sports});
+            return this.View();
         }
 
 		[HttpPost]

@@ -7,6 +7,6 @@
 	public interface ISeasonsService
 	{
 		Task<int> Create(CreateSeasonInputModel model);
-		IQueryable<SeasonViewModel> GetAllAsSelectLisItems(int sport);
+		IQueryable<SeasonListViewModel> GetAllAsSelectLisItems(int sport);
 	}
 }

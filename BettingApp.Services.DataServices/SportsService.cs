@@ -27,12 +27,13 @@
 			return sport.Id;
 		}
 
-		public IQueryable<SelectListItem> GetAllAsSelectLisItems()
+		public 
+			IQueryable<SportListViewModel> GetAllSports()
 		{
-			return this._sportRepository.All().Select(s => new SelectListItem
+			return this._sportRepository.All().Select(s => new SportListViewModel
 			{
-				Value = s.Id.ToString(),
-				Text = s.Name
+				Id = s.Id,
+				Name = s.Name
 			});
 		}
 	}

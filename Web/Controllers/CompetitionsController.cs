@@ -19,9 +19,7 @@ namespace Web.Controllers
 
 	    public IActionResult Create()
 	    {
-		    var sports = this.SportsService.GetAllAsSelectLisItems().ToList();
-
-		    return this.View(new CreateCompetitionInputModel{Sports=sports});
+		    return this.View();
 	    }
 		[HttpPost]
         public IActionResult Create(CreateCompetitionInputModel model)

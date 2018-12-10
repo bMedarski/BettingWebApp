@@ -39,10 +39,10 @@ namespace BettingApp.Services.DataServices
 			return season.Id;
 		}
 
-		public IQueryable<SeasonViewModel> GetAllAsSelectLisItems(int sport)
+		public IQueryable<SeasonListViewModel> GetAllAsSelectLisItems(int sport)
 		{
 			//TODO everywhere PROPERTIES OR FIELDS
-			var seasons = this.SeasonRepository.All().Include(s=>s.Sport).Where(s => s.Sport.Id == sport).Select(s => new SeasonViewModel()
+			var seasons = this.SeasonRepository.All().Include(s=>s.Sport).Where(s => s.Sport.Id == sport).Select(s => new SeasonListViewModel()
 			{
 				Id = s.Id,
 				Name = s.Name

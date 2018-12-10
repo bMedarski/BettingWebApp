@@ -2,6 +2,7 @@
 
 namespace Web.Controllers
 {
+	using System.Linq;
 	using System.Threading.Tasks;
 	using BettingApp.Services.DataServices.Contracts;
 	using BettingApp.Services.ViewModels.Sport;
@@ -30,6 +31,12 @@ namespace Web.Controllers
 
 		    var sportId = await this.SportsService.CreateAsync(model);
 		    return this.RedirectToAction(actionName:"Index",controllerName:"Home");
+	    }
+	    [HttpGet]
+	    public JsonResult AllSports()
+	    {
+		    var seasons = this.SportsService.GetAllSports().ToList();
+		    return this.Json(seasons);
 	    }
     }
 }

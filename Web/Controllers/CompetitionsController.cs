@@ -2,22 +2,26 @@
 
 namespace Web.Controllers
 {
+	using System.Linq;
 	using BettingApp.Services.DataServices.Contracts;
 	using BettingApp.Services.ViewModels.Competition;
 
 	public class CompetitionsController : BaseController
     {
 	    public ICompetitionsService CompetitionsService { get; set; }
+		public ISportsService SportsService { get; }
 
-	    public CompetitionsController(ICompetitionsService competitionsService)
+		public CompetitionsController(ICompetitionsService competitionsService,ISportsService sportsService)
 	    {
 		    this.CompetitionsService = competitionsService;
-	    }
-
+		    this.SportsService = sportsService;
+		}
 
 	    public IActionResult Create()
 	    {
-		    return this.View();
+		    var sports = this.SportsService.GetAllAsSelectLisItems().ToList();
+
+		    return this.View(new CreateCompetitionInputModel{Sports=sports});
 	    }
 		[HttpPost]
         public IActionResult Create(CreateCompetitionInputModel model)

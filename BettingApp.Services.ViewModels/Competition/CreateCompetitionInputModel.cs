@@ -1,18 +1,19 @@
 ﻿namespace BettingApp.Services.ViewModels.Competition
 {
+	using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
-	using Data.Common;
 	using Data.Common.Enums;
-	using Mapping;
+	using Microsoft.AspNetCore.Mvc.Rendering;
 
-	public class CreateCompetitionInputModel : IMapTo<Competition>,IMapFrom<Competition>
+	public class CreateCompetitionInputModel
 	{
 		[Required]
 		public string Name { get; set; }
 
 		[Required]
-		[EnumDataType(typeof(Country))]
-		public Country Country { get; set; }
-		//public Season Season { get; set; }
+		[EnumDataType(typeof(Country))]		
+		public string SportId { get; set; }
+		public IList<SelectListItem> Sports { get; set; }
+		public string SeasonId { get; set; }
 	}
 }

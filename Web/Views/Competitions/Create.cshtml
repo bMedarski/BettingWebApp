@@ -1,19 +1,52 @@
 ﻿@using BettingApp.Data.Common.Enums
 @model BettingApp.Services.ViewModels.Competition.CreateCompetitionInputModel
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create Competition</h2>
 
 <form asp-action="Create" asp-controller="Competitions" method="post">
-	
+
 	<label asp-for="Name"></label>
 	<input asp-for="Name" />
-	@*<label asp-for="Season"></label>
-	<input asp-for="Season" />*@
-	<select asp-for="Country" asp-items="Html.GetEnumSelectList<Country>()">
+
+	<select asp-for="SportId" asp-items="Model.Sports">
+		<option selected="selected" value="">Please select</option>
+	</select>
+	<select asp-for="SeasonId" id="seasonMenu">
 		<option selected="selected" value="">Please select</option>
 	</select>
 	<input type="submit" name="name" value="Create" />
 </form>
+
+
+@section Scripts {
+	<script>
+		
+		$(document).ready(function () {
+
+			$("#SportId").change(function () {
+				var sportId = $("#SportId").val();
+
+				var dropdown = $('#SeasonId');
+				dropdown.empty();
+				dropdown.append('<option selected="true" disabled>Choose Season</option>');
+				dropdown.prop('selectedIndex', 0);
+
+				var request = $.ajax({
+					url: "/Seasons/AllSeasons",
+					data: { sport: sportId },
+					type: "POST",
+					dataType: "json",
+					success: function(seasons) {
+						$.each(seasons, function (index, value) {
+							$('#seasonMenu').append('<option value="' + value.id + '">' + value.name + '</option>');
+						});
+					}
+				});
+			});
+		})
+
+	</script>
+}

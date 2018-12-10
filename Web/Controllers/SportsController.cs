@@ -2,6 +2,7 @@
 
 namespace Web.Controllers
 {
+	using System.Threading.Tasks;
 	using BettingApp.Services.DataServices.Contracts;
 	using BettingApp.Services.ViewModels.Sport;
 
@@ -20,9 +21,15 @@ namespace Web.Controllers
         }
 
 		[HttpPost]
-	    public IActionResult Create(CreateSportInputModel model)
+	    public async Task<IActionResult> Create(CreateSportInputModel model)
 	    {
-		    return this.View();
+		    if (!this.ModelState.IsValid)
+		    {
+			    return this.View(model);
+		    }
+
+		    var sportId = await this.SportsService.CreateAsync(model);
+		    return this.RedirectToAction(actionName:"Index",controllerName:"Home");
 	    }
     }
 }

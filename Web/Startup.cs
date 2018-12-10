@@ -60,6 +60,8 @@ namespace Web
 
 			services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
 			services.AddScoped<ICompetitionsService, CompetitionsService>();
+			services.AddScoped<ISeasonsService, SeasonsService>();
+			services.AddScoped<ISportsService, SportsService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

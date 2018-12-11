@@ -3,6 +3,7 @@
 namespace Web.Controllers
 {
 	using System.Linq;
+	using System.Threading.Tasks;
 	using BettingApp.Services.DataServices.Contracts;
 	using BettingApp.Services.ViewModels.Competition;
 
@@ -22,9 +23,13 @@ namespace Web.Controllers
 		    return this.View();
 	    }
 		[HttpPost]
-        public IActionResult Create(CreateCompetitionInputModel model)
+        public async Task<IActionResult> Create(CreateCompetitionInputModel model)
         {
-	        var competition = this.CompetitionsService.CreateAsync(model);
+	        if (!this.ModelState.IsValid)
+	        {
+		        return this.View(model);
+	        }
+	        var competition = await this.CompetitionsService.CreateAsync(model);
             return this.View();
         }
     }

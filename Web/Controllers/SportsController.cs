@@ -30,7 +30,7 @@ namespace Web.Controllers
 		    }
 
 		    var sportId = await this.SportsService.CreateAsync(model);
-		    return this.RedirectToAction(actionName:"Index",controllerName:"Home");
+		    return this.View();
 	    }
 	    [HttpGet]
 	    public JsonResult AllSports()

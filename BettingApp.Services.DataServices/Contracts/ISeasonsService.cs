@@ -2,11 +2,13 @@
 {
 	using System.Linq;
 	using System.Threading.Tasks;
+	using Data.Common;
 	using ViewModels.Season;
 
 	public interface ISeasonsService
 	{
 		Task<int> Create(CreateSeasonInputModel model);
-		IQueryable<SeasonListViewModel> GetAllAsSelectLisItems(int sport);
+		Season GetSeasonById(int seasonId);
+		IQueryable<SeasonListViewModel> GetAllSeasons(int sport);
 	}
 }

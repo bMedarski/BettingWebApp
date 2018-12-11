@@ -1,31 +1,30 @@
-﻿
-namespace BettingApp.Services.DataServices
+﻿namespace BettingApp.Services.DataServices
 {
 	using System.Linq;
 	using System.Threading.Tasks;
 	using Contracts;
 	using Data.Common;
-	using Microsoft.AspNetCore.Mvc.Rendering;
 	using Microsoft.EntityFrameworkCore;
 	using ViewModels.Season;
 
 	public class SeasonsService:ISeasonsService
 	{
-		public IRepository<Season> SeasonRepository { get; }
-		public IRepository<Sport> SportRepository { get; }
+		private readonly IRepository<Season> _seasonRepository;
+		private readonly ISportsService _sportsService;
 
-		public SeasonsService(IRepository<Season> seasonRepository,IRepository<Sport> sportRepository)
+		public SeasonsService(IRepository<Season> seasonRepository,ISportsService sportsService)
 		{
-			this.SeasonRepository = seasonRepository;
-			this.SportRepository = sportRepository;
+			this._seasonRepository = seasonRepository;
+			this._sportsService = sportsService;
 		}
 
 		public async Task<int> Create(CreateSeasonInputModel model)
 		{
-			var sportId = int.Parse(model.SportId);
 			//TODO Check if Id is int
-			var sport = this.SportRepository.All().FirstOrDefault(s => s.Id == sportId);
+			var sport = this._sportsService.GetSportById(int.Parse(model.SportId));
 			//TODO If Id is Valid
+
+			//TODO Mapper Instance
 			var season = new Season
 			{
 				Name = model.Name,
@@ -33,21 +32,27 @@ namespace BettingApp.Services.DataServices
 				Start = model.Start,
 				End = model.End
 			};
-			await this.SeasonRepository.AddAsync(season);
+			await this._seasonRepository.AddAsync(season);
 			//TODO check for database errors
-			await this.SeasonRepository.SaveChangesAsync();
+			await this._seasonRepository.SaveChangesAsync();
 			return season.Id;
 		}
 
-		public IQueryable<SeasonListViewModel> GetAllAsSelectLisItems(int sport)
+		public IQueryable<SeasonListViewModel> GetAllSeasons(int sport)
 		{
 			//TODO everywhere PROPERTIES OR FIELDS
-			var seasons = this.SeasonRepository.All().Include(s=>s.Sport).Where(s => s.Sport.Id == sport).Select(s => new SeasonListViewModel()
+			var seasons = this._seasonRepository.All().Include(s=>s.Sport).Where(s => s.Sport.Id == sport).Select(s => new SeasonListViewModel()
 			{
 				Id = s.Id,
 				Name = s.Name
 			});
 			return seasons;
+		}
+
+		public Season GetSeasonById(int seasonId)
+		{
+			var season = this._seasonRepository.All().FirstOrDefault(s => s.Id == seasonId);
+			return season;
 		}
 	}
 }

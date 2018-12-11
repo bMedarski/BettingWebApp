@@ -11,9 +11,9 @@
 	<label asp-for="Name"></label>
 	<input asp-for="Name" />
 
-	@*<select asp-for="SportId" asp-items="Model.Sports" id="">
+	<select asp-for="Country" asp-items="Html.GetEnumSelectList<Country>()">
 		<option selected="selected" value="">Please select</option>
-	</select>*@
+	</select>
 	<select asp-for="SportId" id="sportsMenu">
 		<option selected="selected" disabled>Please select</option>
 	</select>

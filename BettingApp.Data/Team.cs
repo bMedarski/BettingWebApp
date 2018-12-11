@@ -10,5 +10,7 @@
 			this.Players = new HashSet<Player>();
 		}
 		public virtual ICollection<Player> Players { get; set; }
+
+		public string LogoUrl { get; set; }
 	}
 }

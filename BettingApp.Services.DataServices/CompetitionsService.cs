@@ -1,6 +1,5 @@
 ﻿namespace BettingApp.Services.DataServices
 {
-	using System.Linq;
 	using System.Threading.Tasks;
 	using Contracts;
 	using Data.Common;
@@ -9,30 +8,27 @@
 	public class CompetitionsService : ICompetitionsService
 	{
 		private readonly IRepository<Competition> _competitionRepository;
+		private readonly ISeasonsService _seasonsService;
 
-		public CompetitionsService(IRepository<Competition> competitionRepository,IRepository<Sport> sportRepository)
+		public CompetitionsService(IRepository<Competition> competitionRepository,ISeasonsService seasonsService)
 		{
 			this._competitionRepository = competitionRepository;
-			this.SportRepository = sportRepository;
+			this._seasonsService = seasonsService;
 		}
-
-		public IRepository<Sport> SportRepository { get; }
 
 		public async Task<int> CreateAsync(CreateCompetitionInputModel model)
 		{
-			var sportId = int.Parse(model.SportId);
-			//TODO Check if Id is int
-			var sport = this.SportRepository.All().FirstOrDefault(s => s.Id == sportId);
-			//TODO If Id is Valid
-			//var competition = model.To<Competition>();
-			//var competitionResult = this.competitionRepository.AddAsync(competition).GetAwaiter().GetResult();
-			//await this.competitionRepository.SaveChangesAsync();
-			//var task = new Task(()=
-			//{
-			//	Console.WriteLine()
-			//});
-			//return Task.CompletedTask;
-			return 0;
+			var season = this._seasonsService.GetSeasonById(int.Parse(model.SeasonId));
+
+			var competition = new Competition()
+			{
+				CurrentSeason = season,
+				Name = model.Name,
+				Country = model.Country
+			};
+			await this._competitionRepository.AddAsync(competition);
+			await this._competitionRepository.SaveChangesAsync();
+			return competition.Id;
 		}
 	}
 }

@@ -1,10 +1,22 @@
 ﻿namespace BettingApp.Data
 {
 	using Common;
-	using Enums.Football;
+	using Common.Enums;
 
 	public class Player:Competitor
 	{
-		public FootballPosition Position { get; set; }
+
+		public virtual Position Position { get; set; }
+
+		public string FirstName { get; set; }
+
+		public string LastName { get; set; }
+
+		public int? Number { get; set; }
+
+		public string ImageUrl { get; set; }
+
+		public virtual Team Team { get; set; }
+
 	}
 }

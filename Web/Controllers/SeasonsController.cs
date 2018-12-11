@@ -2,10 +2,8 @@
 
 namespace Web.Controllers
 {
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using BettingApp.Data.Common;
 	using BettingApp.Services.DataServices.Contracts;
 	using BettingApp.Services.ViewModels.Season;
 
@@ -23,8 +21,6 @@ namespace Web.Controllers
 
         public IActionResult Create()
         {
-	        var sports = this.SportsService.GetAllSports().ToList();
-			//TODO to return status code 201
             return this.View();
         }
 
@@ -35,14 +31,14 @@ namespace Web.Controllers
 		    {
 			    return this.View(model);
 		    }
-		    var seasonId = await this.SeasonsService.Create(model);
-		    return this.RedirectToAction(actionName: "Index", controllerName: "Home");
+		    var season = await this.SeasonsService.Create(model);
+		    return this.View();
 	    }
 
 	    [HttpPost]
 	    public JsonResult AllSeasons(int sport)
 	    {
-		    var seasons = this.SeasonsService.GetAllAsSelectLisItems(sport).ToList();
+		    var seasons = this.SeasonsService.GetAllSeasons(sport).ToList();
 		    return this.Json(seasons);
 	    }
     }

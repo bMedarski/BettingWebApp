@@ -2,7 +2,7 @@
 {
 	public enum Country
 	{
-		Other = 1,
+		International = 1,
 		Germany = 2,
 		France = 3,
 		Italy = 4,

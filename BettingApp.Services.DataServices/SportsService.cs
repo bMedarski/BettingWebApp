@@ -4,10 +4,9 @@
 	using System.Threading.Tasks;
 	using Contracts;
 	using Data.Common;
-	using Microsoft.AspNetCore.Mvc.Rendering;
 	using ViewModels.Sport;
 
-	public class SportsService:ISportsService
+	public class SportsService : ISportsService
 	{
 		private readonly IRepository<Sport> _sportRepository;
 
@@ -27,14 +26,20 @@
 			return sport.Id;
 		}
 
-		public 
-			IQueryable<SportListViewModel> GetAllSports()
+		public IQueryable<SportListViewModel> GetAllSports()
 		{
-			return this._sportRepository.All().Select(s => new SportListViewModel
+			var sports = this._sportRepository.All().Select(s => new SportListViewModel
 			{
 				Id = s.Id,
 				Name = s.Name
 			});
+			return sports;
+		}
+
+		public Sport GetSportById(int sportId)
+		{
+			var sport = this._sportRepository.All().FirstOrDefault(s => s.Id == sportId);
+			return sport;
 		}
 	}
 }

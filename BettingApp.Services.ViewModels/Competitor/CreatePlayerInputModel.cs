@@ -3,6 +3,7 @@
 	using Data;
 	using Data.Common;
 	using Data.Common.Enums;
+	using Data.Models;
 
 	public class CreatePlayerInputModel
 	{

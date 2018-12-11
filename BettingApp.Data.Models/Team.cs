@@ -1,4 +1,4 @@
-﻿namespace BettingApp.Data
+﻿namespace BettingApp.Data.Models
 {
 	using System.Collections.Generic;
 	using Common;

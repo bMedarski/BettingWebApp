@@ -1,5 +1,7 @@
-﻿namespace BettingApp.Data.Common
+﻿namespace BettingApp.Data.Models
 {
+	using Common;
+
 	public class Position
 	{
 		public int Id { get; set; }

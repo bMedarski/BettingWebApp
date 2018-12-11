@@ -4,14 +4,16 @@ using BettingApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BettingApp.Data.Migrations
 {
     [DbContext(typeof(BettingAppDbContext))]
-    partial class BettingAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181211155154_introduce_bet_match_accont")]
+    partial class introduce_bet_match_accont
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

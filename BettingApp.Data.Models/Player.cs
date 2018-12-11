@@ -1,7 +1,6 @@
-﻿namespace BettingApp.Data
+﻿namespace BettingApp.Data.Models
 {
 	using Common;
-	using Common.Enums;
 
 	public class Player:Competitor
 	{

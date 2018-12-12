@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BettingApp.Data.Migrations
 {
     [DbContext(typeof(BettingAppDbContext))]
-    [Migration("20181212124620_userAccount")]
-    partial class userAccount
+    [Migration("20181212204104_rename_useraccount")]
+    partial class rename_useraccount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -160,8 +160,6 @@ namespace BettingApp.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<int>("AccountId");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -190,12 +188,12 @@ namespace BettingApp.Data.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
+                    b.Property<int>("UserAccountId");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -204,6 +202,8 @@ namespace BettingApp.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -353,7 +353,7 @@ namespace BettingApp.Data.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Player");
+                    b.ToTable("Players");
 
                     b.HasDiscriminator().HasValue("Player");
                 });
@@ -364,7 +364,7 @@ namespace BettingApp.Data.Migrations
 
                     b.Property<string>("LogoUrl");
 
-                    b.ToTable("Team");
+                    b.ToTable("Teams");
 
                     b.HasDiscriminator().HasValue("Team");
                 });
@@ -415,9 +415,9 @@ namespace BettingApp.Data.Migrations
 
             modelBuilder.Entity("BettingApp.Data.Models.User", b =>
                 {
-                    b.HasOne("BettingApp.Data.Models.UserAccount", "Account")
+                    b.HasOne("BettingApp.Data.Models.UserAccount", "UserAccount")
                         .WithMany()
-                        .HasForeignKey("AccountId")
+                        .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

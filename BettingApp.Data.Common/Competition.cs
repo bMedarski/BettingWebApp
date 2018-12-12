@@ -14,7 +14,7 @@
 		public string Name { get; set; }
 		//public ICollection<Competitor> Competitors { get; set; }
 		public Country Country { get; set; }
-		public Season CurrentSeason { get; set; }
-		public ICollection<Season> PastSeasons { get; set; }
+		public virtual Season CurrentSeason { get; set; }
+		public virtual ICollection<Season> PastSeasons { get; set; }
 	}
 }

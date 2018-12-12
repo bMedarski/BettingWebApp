@@ -2,14 +2,8 @@
 {
 	using Common;
 
-	public class UserAccount:BaseModel<int>
+	public class Wallet:BaseModel<int>
 	{
-		public UserAccount()
-		{
-			//TODO Constant
-			this.MoneyBalance = 100;
-		}
-
 		public decimal MoneyBalance { get; set; }
 
 		public decimal MoneyInBets { get; set; }

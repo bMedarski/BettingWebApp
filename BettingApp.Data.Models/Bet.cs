@@ -10,7 +10,7 @@
 
 		public double Coefficient { get; set; }
 
-		public Match Match { get; set; }
+		public virtual Match Match { get; set; }
 
 	}
 }

@@ -32,8 +32,8 @@
 			var result = this.UserManager.CreateAsync(user, model.Password).Result;
 			if (result.Succeeded)
 			{
-				this.UserManager.AddToRoleAsync(user,
-					GlobalConstants.UserRoleText).Wait();
+				//this.UserManager.AddToRoleAsync(user,
+				//	GlobalConstants.UserRoleText).Wait();
 				this.SignInUser(user, model.Password);
 			}
 		}

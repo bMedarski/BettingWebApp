@@ -18,8 +18,15 @@
 		public DbSet<Season> Seasons { get; set; }
 		public DbSet<Sport> Sports { get; set; }
 		public DbSet<Position> Positions { get; set; }
-		public DbSet<UserAccount> UserAccounts { get; set; }
+		public DbSet<Wallet> Wallets { get; set; }
 		public DbSet<Match> Matches { get; set; }
 		public DbSet<Bet> Bets { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			base.OnModelCreating(builder);
+			builder.Entity<Player>().ToTable("Players");
+			builder.Entity<Team>().ToTable("Teams");
+		}
 	}
 }

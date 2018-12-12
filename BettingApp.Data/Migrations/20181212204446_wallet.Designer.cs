@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BettingApp.Data.Migrations
 {
     [DbContext(typeof(BettingAppDbContext))]
-    [Migration("20181207174608_add-sports")]
-    partial class addsports
+    [Migration("20181212204446_wallet")]
+    partial class wallet
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,6 +89,70 @@ namespace BettingApp.Data.Migrations
                     b.ToTable("Seasons");
                 });
 
+            modelBuilder.Entity("BettingApp.Data.Common.Sport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sports");
+                });
+
+            modelBuilder.Entity("BettingApp.Data.Models.Bet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount");
+
+                    b.Property<double>("Coefficient");
+
+                    b.Property<int?>("MatchId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MatchId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Bets");
+                });
+
+            modelBuilder.Entity("BettingApp.Data.Models.Match", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Matches");
+                });
+
+            modelBuilder.Entity("BettingApp.Data.Models.Position", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("SportId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SportId");
+
+                    b.ToTable("Positions");
+                });
+
             modelBuilder.Entity("BettingApp.Data.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -127,6 +191,8 @@ namespace BettingApp.Data.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
+                    b.Property<int?>("WalletId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -137,20 +203,24 @@ namespace BettingApp.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("WalletId");
+
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("BettingApp.Data.Sport", b =>
+            modelBuilder.Entity("BettingApp.Data.Models.Wallet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<decimal>("MoneyBalance");
+
+                    b.Property<decimal>("MoneyInBets");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sports");
+                    b.ToTable("Wallets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -219,11 +289,9 @@ namespace BettingApp.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -254,11 +322,9 @@ namespace BettingApp.Data.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -267,27 +333,38 @@ namespace BettingApp.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("BettingApp.Data.Player", b =>
+            modelBuilder.Entity("BettingApp.Data.Models.Player", b =>
                 {
                     b.HasBaseType("BettingApp.Data.Common.Competitor");
 
-                    b.Property<int>("Position");
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<int?>("Number");
+
+                    b.Property<int?>("PositionId");
 
                     b.Property<int?>("TeamId");
 
+                    b.HasIndex("PositionId");
+
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Player");
+                    b.ToTable("Players");
 
                     b.HasDiscriminator().HasValue("Player");
                 });
 
-            modelBuilder.Entity("BettingApp.Data.Team", b =>
+            modelBuilder.Entity("BettingApp.Data.Models.Team", b =>
                 {
                     b.HasBaseType("BettingApp.Data.Common.Competitor");
 
+                    b.Property<string>("LogoUrl");
 
-                    b.ToTable("Team");
+                    b.ToTable("Teams");
 
                     b.HasDiscriminator().HasValue("Team");
                 });
@@ -312,9 +389,35 @@ namespace BettingApp.Data.Migrations
                         .WithMany("PastSeasons")
                         .HasForeignKey("CompetitionId");
 
-                    b.HasOne("BettingApp.Data.Sport", "Sport")
+                    b.HasOne("BettingApp.Data.Common.Sport", "Sport")
                         .WithMany()
                         .HasForeignKey("SportId");
+                });
+
+            modelBuilder.Entity("BettingApp.Data.Models.Bet", b =>
+                {
+                    b.HasOne("BettingApp.Data.Models.Match", "Match")
+                        .WithMany()
+                        .HasForeignKey("MatchId");
+
+                    b.HasOne("BettingApp.Data.Models.User", "User")
+                        .WithMany("Bets")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("BettingApp.Data.Models.Position", b =>
+                {
+                    b.HasOne("BettingApp.Data.Common.Sport", "Sport")
+                        .WithMany()
+                        .HasForeignKey("SportId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BettingApp.Data.Models.User", b =>
+                {
+                    b.HasOne("BettingApp.Data.Models.Wallet", "Wallet")
+                        .WithMany()
+                        .HasForeignKey("WalletId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -362,9 +465,13 @@ namespace BettingApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BettingApp.Data.Player", b =>
+            modelBuilder.Entity("BettingApp.Data.Models.Player", b =>
                 {
-                    b.HasOne("BettingApp.Data.Team")
+                    b.HasOne("BettingApp.Data.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId");
+
+                    b.HasOne("BettingApp.Data.Models.Team", "Team")
                         .WithMany("Players")
                         .HasForeignKey("TeamId");
                 });

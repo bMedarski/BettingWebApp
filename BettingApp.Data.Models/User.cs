@@ -5,8 +5,11 @@
 
 	public class User : IdentityUser
 	{
-		public int AccountId { get; set; }
-		public UserAccount Account { get; set; }
-		public IList<Bet> Bets { get; set; }
+		public User()
+		{
+			this.Bets = new HashSet<Bet>();
+		}
+		public virtual Wallet Wallet { get; set; }
+		public virtual ICollection<Bet> Bets { get; set; }
 	}
 }

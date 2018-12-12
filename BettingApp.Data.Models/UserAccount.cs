@@ -2,9 +2,9 @@
 {
 	using Common;
 
-	public class Account:BaseModel<int>
+	public class UserAccount:BaseModel<int>
 	{
-		public Account()
+		public UserAccount()
 		{
 			//TODO Constant
 			this.MoneyBalance = 100;

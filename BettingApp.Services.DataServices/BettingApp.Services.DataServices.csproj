@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BettingApp.Data.Common\BettingApp.Data.Common.csproj" />
+    <ProjectReference Include="..\BettingApp.Services.Utilities\BettingApp.Services.Utilities.csproj" />
     <ProjectReference Include="..\BettingApp.Services.ViewModels\BettingApp.Services.ViewModels.csproj" />
   </ItemGroup>
 

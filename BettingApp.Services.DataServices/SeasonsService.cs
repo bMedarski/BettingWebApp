@@ -23,7 +23,6 @@
 			//TODO Check if Id is int
 			var sport = this._sportsService.GetSportById(int.Parse(model.SportId));
 			//TODO If Id is Valid
-
 			//TODO Mapper Instance
 			var season = new Season
 			{
@@ -40,7 +39,6 @@
 
 		public IQueryable<SeasonListViewModel> GetAllSeasons(int sport)
 		{
-			//TODO everywhere PROPERTIES OR FIELDS
 			var seasons = this._seasonRepository.All().Include(s=>s.Sport).Where(s => s.Sport.Id == sport).Select(s => new SeasonListViewModel()
 			{
 				Id = s.Id,

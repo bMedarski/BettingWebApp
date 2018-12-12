@@ -18,7 +18,7 @@
 		public DbSet<Season> Seasons { get; set; }
 		public DbSet<Sport> Sports { get; set; }
 		public DbSet<Position> Positions { get; set; }
-		public DbSet<Account> Accounts { get; set; }
+		public DbSet<UserAccount> UserAccounts { get; set; }
 		public DbSet<Match> Matches { get; set; }
 		public DbSet<Bet> Bets { get; set; }
 	}

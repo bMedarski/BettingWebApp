@@ -6,8 +6,7 @@
 	public class User : IdentityUser
 	{
 		public int AccountId { get; set; }
-		public Account Account { get; set; }
-
+		public UserAccount Account { get; set; }
 		public IList<Bet> Bets { get; set; }
 	}
 }

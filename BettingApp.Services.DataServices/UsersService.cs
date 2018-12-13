@@ -1,6 +1,6 @@
 ﻿namespace BettingApp.Services.DataServices
 {
-	using System.Linq;
+	using System.Threading.Tasks;
 	using AutoMapper;
 	using Contracts;
 	using Data;
@@ -26,21 +26,18 @@
 			this.SignInManager = signInManager;
 			this.UserManager = userManager;
 		}
-		public void CreateUser(RegisterUserInputModel model)
+		public async Task<IdentityResult> CreateUser(RegisterUserInputModel model)
 		{
 			var user = this._autoMapper.Map<User>(model);
-			var result = this.UserManager.CreateAsync(user, model.Password).Result;
+			var result = await this.UserManager.CreateAsync(user, model.Password);
 			if (result.Succeeded)
 			{
-				//this.UserManager.AddToRoleAsync(user,
-				//	GlobalConstants.UserRoleText).Wait();
-				this.SignInUser(user, model.Password);
+				await this.UserManager.AddToRoleAsync(user,
+					GlobalConstants.UserRoleText);
+				await this.SignInManager.PasswordSignInAsync(user, model.Password, false, false);
+				return result;
 			}
-		}
-
-		public async void SignInUser(User user, string password)
-		{
-			await this.SignInManager.PasswordSignInAsync(user, password, false, false);
+			return result;
 		}
 		public async void LogoutUser()
 		{
@@ -79,6 +76,5 @@
 		//	var user = this.UserManager.Users.Where(u => u.Id == id).FirstOrDefault();
 		//	this.UserManager.RemoveFromRoleAsync(user,GlobalConstants.AdminRoleText).GetAwaiter().GetResult();
 		//}
-	
 	}
 }

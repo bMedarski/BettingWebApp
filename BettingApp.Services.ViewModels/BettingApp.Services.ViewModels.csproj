@@ -8,6 +8,7 @@
     <ProjectReference Include="..\BettingApp.Data.Common\BettingApp.Data.Common.csproj" />
     <ProjectReference Include="..\BettingApp.Data\BettingApp.Data.csproj" />
     <ProjectReference Include="..\BettingApp.Services.Mapping\BettingApp.Services.Mapping.csproj" />
+    <ProjectReference Include="..\BettingApp.Services.Utilities\BettingApp.Services.Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

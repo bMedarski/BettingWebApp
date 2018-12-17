@@ -1,4 +1,4 @@
-﻿namespace Web.Utilities
+﻿namespace BettingApp.Services.Utilities.Constants
 {
 	public class GlobalConstants
 	{

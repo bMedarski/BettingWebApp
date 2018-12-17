@@ -34,6 +34,11 @@
 			await this._seasonRepository.AddAsync(season);
 			//TODO check for database errors
 			await this._seasonRepository.SaveChangesAsync();
+
+			//TODO in case of success to return whole model
+			//TODO research good way for creating and if-ove
+
+
 			return season.Id;
 		}
 

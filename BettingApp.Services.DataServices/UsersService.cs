@@ -6,8 +6,8 @@
 	using Data;
 	using Data.Models;
 	using Microsoft.AspNetCore.Identity;
+	using Utilities.Constants;
 	using ViewModels.User;
-	using Web.Utilities;
 
 	public class UsersService:IUsersService
 	{
@@ -34,7 +34,7 @@
 			{
 				await this.UserManager.AddToRoleAsync(user,
 					GlobalConstants.UserRoleText);
-				await this.SignInManager.PasswordSignInAsync(user, model.Password, false, false);
+				await this.SignInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
 				return result;
 			}
 			return result;

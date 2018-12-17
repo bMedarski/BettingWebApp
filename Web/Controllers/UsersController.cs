@@ -29,7 +29,7 @@
 		    if (this.ModelState.IsValid)
 		    {
 			    var result = await this.SignInManager.PasswordSignInAsync(model.Username,
-				    model.Password, false, false);
+				    model.Password, model.RememberMe, false);
 
 			    if (result.Succeeded)
 			    {

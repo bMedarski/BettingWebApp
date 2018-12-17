@@ -3,9 +3,9 @@
 	using System.Threading.Tasks;
 	using BettingApp.Data;
 	using BettingApp.Data.Models;
+	using BettingApp.Services.Utilities.Constants;
 	using Microsoft.AspNetCore.Http;
 	using Microsoft.AspNetCore.Identity;
-	using Utilities;
 
 	public class Seeder
 	{

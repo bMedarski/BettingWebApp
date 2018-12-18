@@ -14,7 +14,7 @@
 		{
 			this._sportRepository = sportRepository;
 		}
-		public async Task<int> CreateAsync(CreateSportInputModel model)
+		public async Task<int> Add(AddSportInputModel model)
 		{
 			var sport = new Sport
 			{

@@ -2,7 +2,7 @@
 {
 	using System.ComponentModel.DataAnnotations;
 
-	public class CreateSportInputModel
+	public class AddSportInputModel
 	{
 		[Required]
 		public string Name { get; set; }

@@ -18,7 +18,7 @@
 			this._sportsService = sportsService;
 		}
 
-		public async Task<int> Create(CreateSeasonInputModel model)
+		public async Task<int> Add(AddSeasonInputModel model)
 		{
 			//TODO Check if Id is int
 			var sport = this._sportsService.GetSportById(int.Parse(model.SportId));

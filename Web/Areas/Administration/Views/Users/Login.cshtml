@@ -10,18 +10,18 @@
 
 <main class="mt-5 w-50 mx-auto main bg-white">
 	<h1 class="text-center bg-bet p-2 top">Login</h1>
-	<form class="mx-auto text-center font-weight-bold" method="post" asp-action="Login" asp-controller="Users">
+	<form class="mx-auto text-center font-weight-bold" method="post" asp-area="Administration" asp-action="Login" asp-controller="Users">
 		<div class="p-2">
-			<div asp-validation-summary="ModelOnly" class="text-warning"></div>
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group w-50 mx-auto">
 				<label asp-for="Username"></label>
 				<input asp-for="Username" class="form-control" placeholder="Username..." />
-				<span asp-validation-for="Username" class="text-warning"></span>
+				<span asp-validation-for="Username" class="text-danger"></span>
 			</div>
 			<div class="form-group w-50 mx-auto">
 				<label asp-for="Password"></label>
 				<input asp-for="Password" class="form-control" placeholder="Password..." />
-				<span asp-validation-for="Password" class="text-warning"></span>
+				<span asp-validation-for="Password" class="text-danger"></span>
 			</div>
 			<div class="form-group w-50 mx-auto row">
 				<label asp-for="RememberMe">
@@ -30,7 +30,7 @@
 			</div>
 			<div class="form-group mt-2 w-50 mx-auto">
 				<p>
-					<a asp-controller="Users" asp-action="Register">Don't have an account?</a>
+					<a asp-area="Administration" asp-controller="Users" asp-action="Register">Don't have an account?</a>
 				</p>
 			</div>
 		</div>

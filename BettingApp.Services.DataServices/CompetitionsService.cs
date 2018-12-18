@@ -16,7 +16,7 @@
 			this._seasonsService = seasonsService;
 		}
 
-		public async Task<int> CreateAsync(CreateCompetitionInputModel model)
+		public async Task<int> Add(AddCompetitionInputModel model)
 		{
 			var season = this._seasonsService.GetSeasonById(int.Parse(model.SeasonId));
 

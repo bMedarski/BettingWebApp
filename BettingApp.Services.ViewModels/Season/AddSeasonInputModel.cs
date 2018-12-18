@@ -6,7 +6,7 @@
 	using Mapping;
 	using Microsoft.AspNetCore.Mvc.Rendering;
 
-	public class CreateSeasonInputModel:IMapTo<Season>
+	public class AddSeasonInputModel:IMapTo<Season>
 	{
 		public string Name { get; set; }
 		public DateTime Start { get; set; }

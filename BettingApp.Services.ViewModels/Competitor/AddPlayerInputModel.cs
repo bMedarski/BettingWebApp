@@ -5,7 +5,7 @@
 	using Data.Common.Enums;
 	using Data.Models;
 
-	public class CreatePlayerInputModel
+	public class AddPlayerInputModel
 	{
 		public string FirstName { get; set; }
 

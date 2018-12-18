@@ -7,7 +7,7 @@
 
 	public interface ISeasonsService
 	{
-		Task<int> Create(CreateSeasonInputModel model);
+		Task<int> Add(AddSeasonInputModel model);
 		Season GetSeasonById(int seasonId);
 		IQueryable<SeasonListViewModel> GetAllSeasons(int sport);
 	}

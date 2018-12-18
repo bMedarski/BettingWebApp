@@ -1,12 +1,12 @@
 ﻿@using BettingApp.Data.Common.Enums
-@model BettingApp.Services.ViewModels.Competition.CreateCompetitionInputModel
+@model BettingApp.Services.ViewModels.Competition.AddCompetitionInputModel
 @{
 	ViewData["Title"] = "Create";
 }
 
 <h2>Create Competition</h2>
 
-<form asp-action="Create" asp-controller="Competitions" method="post">
+<form asp-area="Moderation" asp-action="Create" asp-controller="Competitions" method="post">
 
 	<label asp-for="Name"></label>
 	<input asp-for="Name" />
@@ -30,7 +30,7 @@
 		$(document).ready(function () {
 
 			$.ajax({
-				url: "/Sports/AllSports",
+				url: "/Administrator/Sports/AllSports",
 				type: "GET",
 				dataType: "json",
 				success: function(sports) {
@@ -46,7 +46,7 @@
 				var sportId = $("#sportsMenu").val();
 				console.log(sportId)
 				$.ajax({
-					url: "/Seasons/AllSeasons",
+					url: "/Moderation/Seasons/AllSeasons",
 					data: { sport: sportId },
 					type: "POST",
 					dataType: "json",

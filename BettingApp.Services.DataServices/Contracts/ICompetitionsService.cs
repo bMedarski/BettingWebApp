@@ -5,6 +5,6 @@
 
 	public interface ICompetitionsService
 	{
-		Task<int> CreateAsync(CreateCompetitionInputModel model);
+		Task<int> Add(AddCompetitionInputModel model);
 	}
 }

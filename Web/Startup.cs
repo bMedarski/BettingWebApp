@@ -10,6 +10,7 @@
 	using BettingApp.Services.Mapping;
 	using BettingApp.Services.ViewModels.Competition;
 	using BettingApp.Services.ViewModels.User;
+	using Filters;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Http;
@@ -33,7 +34,7 @@
 		public void ConfigureServices(IServiceCollection services)
 		{
 			AutoMapperConfig.RegisterMappings(
-				typeof(CreateCompetitionInputModel).Assembly,
+				typeof(AddCompetitionInputModel).Assembly,
 				Assembly.GetExecutingAssembly());
 
 			services.Configure<CookiePolicyOptions>(options =>
@@ -61,7 +62,9 @@
 				.AddDefaultTokenProviders()
 				.AddEntityFrameworkStores<BettingAppDbContext>();
 
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddMvc(
+				options => { options.Filters.Add(typeof(ValidateModelStateAttribute)); }
+				).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 			services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
 			services.AddScoped<ICompetitionsService, CompetitionsService>();
@@ -71,9 +74,9 @@
 
 			services.ConfigureApplicationCookie(options =>
 			{
-				options.LoginPath = $"/Users/Login";
-				options.LogoutPath = $"/Users/Logout";
-				options.AccessDeniedPath = $"/Users/AccessDenied";
+				options.LoginPath = $"/Administration/Users/Login";
+				options.LogoutPath = $"/Administration/Users/Logout";
+				options.AccessDeniedPath = $"/Administration/Users/AccessDenied";
 			});
 			services.AddAutoMapper(config =>
 			{
@@ -87,12 +90,13 @@
 		{
 			if (env.IsDevelopment())
 			{
+				app.UseStatusCodePagesWithReExecute("/Errors/Status/{0}");
 				app.UseDeveloperExceptionPage();
 				app.UseDatabaseErrorPage();
 			}
 			else
 			{
-				app.UseExceptionHandler("/Home/Error");
+				app.UseStatusCodePagesWithReExecute("/Errors/Status/{0}");
 				app.UseHsts();
 			}
 			app.UseSeeder();

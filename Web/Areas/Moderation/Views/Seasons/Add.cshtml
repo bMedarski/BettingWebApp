@@ -1,0 +1,51 @@
+﻿@model BettingApp.Services.ViewModels.Season.AddSeasonInputModel
+@{
+	ViewData["Title"] = "Add Season";
+}
+<main class="mt-5 w-50 mx-auto main bg-white">
+	<h1 class="text-center bg-bet p-2 top">Add new Season</h1>
+	<form class="text-center font-weight-bold" method="post" asp-area="Moderation" asp-action="Add" asp-controller="Seasons">
+		<div class="p-2">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="Name"></label>
+				<input asp-for="Name" class="form-control" placeholder="Name..." />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="Start"></label>
+				<input asp-for="Start" class="form-control" placeholder="Start Date..." />
+				<span asp-validation-for="Start" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="End"></label>
+				<input asp-for="End" class="form-control" placeholder="End Date..." />
+				<span asp-validation-for="End" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<select asp-for="SportId" id="sportsMenu">
+					<option selected="selected" disabled>Please select</option>
+				</select>
+			</div>
+		</div>
+		<input type="submit" id="btn-login" class="bg-bet p-2 w-100 font-weight-bold" value="Add" />
+	</form>
+</main>
+
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+
+			$.ajax({
+				url: "/Sports/AllSports",
+				type: "GET",
+				dataType: "json",
+				success: function(sports) {
+					$.each(sports, function (index, value) {
+						$('#sportsMenu').append('<option value="' + value.id + '">' + value.name + '</option>');
+					});
+				}
+			});
+		})
+	</script>
+}

@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Web.Controllers
+﻿namespace Web.Areas.Administration.Controllers
 {
 	using System.Linq;
 	using System.Threading.Tasks;
 	using BettingApp.Services.DataServices.Contracts;
 	using BettingApp.Services.ViewModels.Sport;
+	using Microsoft.AspNetCore.Mvc;
+	using Web.Controllers;
 
 	public class SportsController : BaseController
     {
@@ -16,20 +16,20 @@ namespace Web.Controllers
 		    this.SportsService = sportsService;
 	    }
 
-        public IActionResult Create()
+        public IActionResult Add()
         {
             return this.View();
         }
 
 		[HttpPost]
-	    public async Task<IActionResult> Create(CreateSportInputModel model)
+	    public async Task<IActionResult> Add(AddSportInputModel model)
 	    {
 		    if (!this.ModelState.IsValid)
 		    {
 			    return this.View(model);
 		    }
 
-		    var sportId = await this.SportsService.CreateAsync(model);
+		    var sportId = await this.SportsService.Add(model);
 		    return this.View();
 	    }
 	    [HttpGet]

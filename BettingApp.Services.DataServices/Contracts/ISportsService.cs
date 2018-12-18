@@ -7,7 +7,7 @@
 
 	public interface ISportsService
 	{
-		Task<int> CreateAsync(CreateSportInputModel model);
+		Task<int> Add(AddSportInputModel model);
 		Sport GetSportById(int sportId);
 		IQueryable<SportListViewModel> GetAllSports();
 	}

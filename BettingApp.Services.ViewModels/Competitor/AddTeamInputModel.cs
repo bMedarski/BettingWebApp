@@ -2,7 +2,7 @@
 {
 	using Data.Common.Enums;
 
-	public class CreateTeamInputModel
+	public class AddTeamInputModel
 	{
 		public string Name { get; set; }
 		public string LogoUrl { get; set; }

@@ -3,7 +3,7 @@
 	using System.ComponentModel.DataAnnotations;
 	using Data.Common.Enums;
 
-	public class CreateCompetitionInputModel
+	public class AddCompetitionInputModel
 	{
 		[Required]
 		public string Name { get; set; }

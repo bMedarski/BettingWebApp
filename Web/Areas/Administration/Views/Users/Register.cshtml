@@ -7,7 +7,7 @@
 
 <main class="mt-5 w-50 mx-auto main bg-white">
 	<h1 class="text-center bg-bet p-2 top">Register</h1>
-	<form class="text-center font-weight-bold" method="post" asp-action="Register" asp-controller="Users">
+	<form class="text-center font-weight-bold" method="post" asp-area="Administration" asp-action="Register" asp-controller="Users">
 		<div class="p-2">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group w-50 mx-auto">

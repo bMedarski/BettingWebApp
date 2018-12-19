@@ -4,27 +4,30 @@
 }
 <main class="mt-5 w-50 mx-auto main bg-white">
 	<h1 class="text-center bg-bet p-2 top">Add new Season</h1>
-	<form class="text-center font-weight-bold" method="post" asp-area="Moderation" asp-action="Add" asp-controller="Seasons">
-		<div class="p-2">
+	<form class="text-center font-weight-bold row" method="post" asp-area="Moderation" asp-action="Add" asp-controller="Seasons">
+		<div class="p-2 col-12">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group w-50 mx-auto">
+			<div class="form-group  mx-auto col-6">
 				<label asp-for="Name"></label>
 				<input asp-for="Name" class="form-control" placeholder="Name..." />
 				<span asp-validation-for="Name" class="text-danger"></span>
 			</div>
-			<div class="form-group w-50 mx-auto">
+			<div class="form-group  mx-auto editor-datetime col-6">
 				<label asp-for="Start"></label>
-				<input asp-for="Start" class="form-control" placeholder="Start Date..." />
+				<input asp-for="Start"class="form-control" placeholder="Start Date..." id="startSeasonDate"/>
 				<span asp-validation-for="Start" class="text-danger"></span>
-			</div>
-			<div class="form-group w-50 mx-auto">
+			</div>        
+
+			@*<input type="text" id="datetimepicker" title="datetimepicker"/>*@
+
+			<div class="form-group  mx-auto editor-datetime col-6">
 				<label asp-for="End"></label>
-				<input asp-for="End" class="form-control" placeholder="End Date..." />
+				<input asp-for="End" class="form-control" placeholder="End Date..." id="endSeasonDate"/>
 				<span asp-validation-for="End" class="text-danger"></span>
 			</div>
-			<div class="form-group w-50 mx-auto">
-				<select asp-for="SportId" id="sportsMenu">
-					<option selected="selected" disabled>Please select</option>
+			<div class="form-group  mx-auto col-6">
+				<select asp-for="SportId" class="form-control" id="sportsMenu">
+					<option selected="selected" disabled>Select sport</option>
 				</select>
 			</div>
 		</div>
@@ -34,18 +37,29 @@
 
 @section Scripts {
 	<script>
-		$(document).ready(function () {
+		$(document).ready(function() {
 
 			$.ajax({
-				url: "/Sports/AllSports",
+				url: "/Administration/Sports/AllSports",
 				type: "GET",
 				dataType: "json",
 				success: function(sports) {
-					$.each(sports, function (index, value) {
-						$('#sportsMenu').append('<option value="' + value.id + '">' + value.name + '</option>');
-					});
+					$.each(sports,
+						function(index, value) {
+							$('#sportsMenu').append('<option value="' + value.Id + '">' + value.Name + '</option>');
+						});
 				}
 			});
-		})
+			$("#startSeasonDate").kendoDateTimePicker({
+				value: new Date(),
+				dateInput: true,
+				format: "yyyy/MM/dd hh:mm tt"
+			});
+			$("#endSeasonDate").kendoDateTimePicker({
+				value: new Date(),
+				dateInput: true,
+				format: "yyyy/MM/dd hh:mm tt"
+			});
+		});
 	</script>
 }

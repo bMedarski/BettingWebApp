@@ -1,12 +1,12 @@
 ﻿@using BettingApp.Data.Common.Enums
 @model BettingApp.Services.ViewModels.Competition.AddCompetitionInputModel
 @{
-	ViewData["Title"] = "Create";
+	ViewData["Title"] = "Add Competition";
 }
 
-<h2>Create Competition</h2>
+@*<h2>Create Competition</h2>
 
-<form asp-area="Moderation" asp-action="Create" asp-controller="Competitions" method="post">
+<form asp-area="Moderation" asp-action="Add" asp-controller="Competitions" method="post">
 
 	<label asp-for="Name"></label>
 	<input asp-for="Name" />
@@ -21,8 +21,42 @@
 		<option selected="selected" disabled>Please select</option>
 	</select>
 	<input type="submit" name="name" value="Create" />
-</form>
-
+</form>*@
+<main class="mt-5 w-50 mx-auto main bg-white">
+	<h1 class="text-center bg-bet p-2 top">Add new Competition</h1>
+	<form class="text-center font-weight-bold" method="post" asp-area="Moderation" asp-action="Add" asp-controller="Competitions">
+		<div class="p-2">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="Name"></label>
+				<input asp-for="Name" class="form-control" placeholder="Name..." />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="Country"></label>
+				<select asp-for="Country" asp-items="Html.GetEnumSelectList<Country>()">
+					<option selected="selected" value="">Please select</option>
+				</select>
+				<span asp-validation-for="Country" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="SportId"></label>
+				<select asp-for="SportId" id="sportsMenu">
+					<option selected="selected" disabled>Please select</option>
+				</select>
+				<span asp-validation-for="SportId" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="SeasonId"></label>
+				<select asp-for="SeasonId" id="seasonMenu">
+					<option selected="selected" disabled>Please select</option>
+				</select>
+				<span asp-validation-for="SeasonId" class="text-danger"></span>
+			</div>
+		</div>
+		<input type="submit" id="btn-login" class="bg-bet p-2 w-100 font-weight-bold" value="Add" />
+	</form>
+</main>
 
 @section Scripts {
 	<script>
@@ -30,10 +64,10 @@
 		$(document).ready(function () {
 
 			$.ajax({
-				url: "/Administrator/Sports/AllSports",
+				url: "/Administration/Sports/AllSports",
 				type: "GET",
 				dataType: "json",
-				success: function(sports) {
+				success: function (sports) {
 					$.each(sports, function (index, value) {
 						$('#sportsMenu').append('<option value="' + value.id + '">' + value.name + '</option>');
 					});

@@ -7,12 +7,12 @@
 	using Microsoft.EntityFrameworkCore;
 	using ViewModels.Season;
 
-	public class SeasonsService:ISeasonsService
+	public class SeasonsService : ISeasonsService
 	{
 		private readonly IRepository<Season> _seasonRepository;
 		private readonly ISportsService _sportsService;
 
-		public SeasonsService(IRepository<Season> seasonRepository,ISportsService sportsService)
+		public SeasonsService(IRepository<Season> seasonRepository, ISportsService sportsService)
 		{
 			this._seasonRepository = seasonRepository;
 			this._sportsService = sportsService;
@@ -37,14 +37,13 @@
 
 			//TODO in case of success to return whole model
 			//TODO research good way for creating and if-ove
-
-
+			
 			return season.Id;
 		}
 
 		public IQueryable<SeasonListViewModel> GetAllSeasons(int sport)
 		{
-			var seasons = this._seasonRepository.All().Include(s=>s.Sport).Where(s => s.Sport.Id == sport).Select(s => new SeasonListViewModel()
+			var seasons = this._seasonRepository.All().Include(s => s.Sport).Where(s => s.Sport.Id == sport).Select(s => new SeasonListViewModel()
 			{
 				Id = s.Id,
 				Name = s.Name

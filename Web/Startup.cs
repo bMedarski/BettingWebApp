@@ -20,6 +20,7 @@
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Middleware.Extensions;
+	using Newtonsoft.Json.Serialization;
 
 	public class Startup
 	{
@@ -63,8 +64,16 @@
 				.AddEntityFrameworkStores<BettingAppDbContext>();
 
 			services.AddMvc(
-				options => { options.Filters.Add(typeof(ValidateModelStateAttribute)); }
-				).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+					options =>
+					{
+						options.Filters.Add(typeof(ValidateModelStateAttribute));
+					}
+				)
+				.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+				.AddJsonOptions(options =>
+				options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+			services.AddKendo();
 
 			services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
 			services.AddScoped<ICompetitionsService, CompetitionsService>();

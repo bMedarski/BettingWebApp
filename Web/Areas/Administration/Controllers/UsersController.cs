@@ -3,12 +3,14 @@
 	using System.Threading.Tasks;
 	using BettingApp.Data.Models;
 	using BettingApp.Services.DataServices.Contracts;
+	using BettingApp.Services.Utilities.Constants;
 	using BettingApp.Services.ViewModels.User;
 	using Filters;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
 	using Web.Controllers;
 
+	[Area(GlobalConstants.AdministrationAreaText)]
 	public class UsersController : BaseController
 	{
 		private readonly IUsersService _usersService;
@@ -20,7 +22,6 @@
 			this.SignInManager = signInManager;
 		}
 
-		[Area("Administration")]
 		public IActionResult Login()
 		{
 
@@ -37,13 +38,11 @@
 
 			if (result.Succeeded)
 			{
-				return this.RedirectToAction("Index", "Home");
+				return this.RedirectToAction("Index", "Home", new { area = "" });
 			}
-
 
 			return this.StatusCode(409);
 		}
-
 		public IActionResult Register()
 		{
 			return this.View();
@@ -57,8 +56,7 @@
 			return this.RedirectToAction("Index", "Home");
 
 		}
-
-		[Area("Administration")]
+		
 		public IActionResult Logout()
 		{
 			this._usersService.LogoutUser();

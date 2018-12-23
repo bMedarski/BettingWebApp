@@ -17,5 +17,6 @@
 
 		public virtual Team Team { get; set; }
 
+		//public int SportId { get; set; }
 	}
 }

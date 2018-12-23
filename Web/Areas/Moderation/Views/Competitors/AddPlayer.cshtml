@@ -1,0 +1,94 @@
+﻿@using BettingApp.Data.Common.Enums
+@model BettingApp.Services.ViewModels.Competitor.AddPlayerInputModel
+@{
+	ViewData["Title"] = "Add Player";
+}
+<main class="mt-5 w-50 mx-auto main bg-white">
+	<h1 class="text-center bg-bet p-2 top">Add new Player</h1>
+	<form class="text-center font-weight-bold" method="post" asp-area="Moderation" asp-action="AddPlayer" asp-controller="Competitors">
+		<div class="p-2">
+
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="FirstName"></label>
+				<input asp-for="FirstName" class="form-control" placeholder="First Name..."/>
+				<span asp-validation-for="FirstName" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="LastName"></label>
+				<input asp-for="LastName" class="form-control" placeholder="Last Name..."/>
+				<span asp-validation-for="LastName" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="Country"></label>
+				<select asp-for="Country" asp-items="Html.GetEnumSelectList<Country>()">
+					<option selected="selected" value="">Please select</option>
+				</select>
+				<span asp-validation-for="Country" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="ImageUrl"></label>
+				<input asp-for="ImageUrl" class="form-control" placeholder="Image Url..."/>
+				<span asp-validation-for="ImageUrl" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="Position"></label>
+				<input asp-for="Position" class="form-control" placeholder="Position..."/>
+				<span asp-validation-for="Position" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="Number"></label>
+				<input asp-for="Number" class="form-control" placeholder="Number..."/>
+				<span asp-validation-for="Number" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="SportId"></label>
+				<select asp-for="SportId" id="sportsMenu">
+					<option selected="selected" disabled>Please select</option>
+				</select>
+				<span asp-validation-for="SportId" class="text-danger"></span>
+			</div>
+			<div class="form-group w-50 mx-auto">
+				<label asp-for="TeamId"></label>
+				<select asp-for="TeamId" id="teamsMenu">
+					<option selected="selected" disabled>Please select</option>
+				</select>
+				<span asp-validation-for="TeamId" class="text-danger"></span>
+			</div>
+		</div>
+		<input type="submit" id="btn-login" class="bg-bet p-2 w-100 font-weight-bold" value="Add" />
+	</form>
+</main>
+
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+
+			$.ajax({
+				url: "/Administration/Sports/AllSports",
+				type: "GET",
+				dataType: "json",
+				success: function (sports) {
+					$.each(sports, function (index, value) {
+						$('#sportsMenu').append('<option value="' + value.Id + '">' + value.Name + '</option>');
+					});
+				}
+			});
+			$("#sportsMenu").change(function () {
+				var sportId = $("#sportsMenu").val();
+				$.ajax({
+					url: "/Moderation/Competitors/AllTeams",
+					data: { sport: sportId },
+					type: "POST",
+					dataType: "json",
+					success: function(teams) {
+						$.each(teams, function (index, value) {
+							$('#teamsMenu').append('<option value="' + value.Id + '">' + value.Name + '</option>');
+						});
+					}
+				});
+			});
+		})
+
+	</script>
+}

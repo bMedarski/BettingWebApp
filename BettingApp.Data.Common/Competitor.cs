@@ -2,10 +2,11 @@
 {
 	using Enums;
 
-	public class Competitor:BaseModel<int>
+	public abstract class Competitor:BaseModel<int>
 	{
 		public string Name { get; set; }
 
 		public Country Country { get; set; }
+
 	}
 }

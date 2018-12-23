@@ -4,23 +4,25 @@
 	using System.ComponentModel.DataAnnotations;
 	using Data.Common;
 	using Mapping;
+	using Utilities.Constants;
 
 	public class AddSeasonInputModel:IMapTo<Season>
 	{
-		[Required]	
+		[Required(ErrorMessage = InputModelsConstants.RequiredErrorMessage)]
+		[MinLength(InputModelsConstants.SeasonNameMinimumLength,ErrorMessage = InputModelsConstants.SeasonNameLengthErrorMessage)]
 		public string Name { get; set; }
 		
-		[Required(ErrorMessage = "Date Required")]
-		[DataType(DataType.Date, ErrorMessage = "Invalid Date Format")]  
-		[DisplayFormat(DataFormatString = "{yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = true)]
+		[Required(ErrorMessage = InputModelsConstants.RequiredErrorMessage)]
+		[DataType(DataType.Date, ErrorMessage = InputModelsConstants.DateInvalidErrorMessage)]  
+		[DisplayFormat(DataFormatString = InputModelsConstants.DateFormat, ApplyFormatInEditMode = true)]
 		public DateTime Start { get; set; }
 		
-		[Required(ErrorMessage = "Date Required")]
-		[DataType(DataType.Date, ErrorMessage = "Invalid Date Format")]  
-		[DisplayFormat(DataFormatString = "{yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = true)]
+		[Required(ErrorMessage = InputModelsConstants.RequiredErrorMessage)]
+		[DataType(DataType.Date, ErrorMessage = InputModelsConstants.DateInvalidErrorMessage)]  
+		[DisplayFormat(DataFormatString = InputModelsConstants.DateFormat, ApplyFormatInEditMode = true)]
 		public DateTime End { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = InputModelsConstants.RequiredErrorMessage)]
 		public string SportId { get; set; }
 	}
 }

@@ -12,5 +12,7 @@
 		public virtual ICollection<Player> Players { get; set; }
 
 		public string LogoUrl { get; set; }
+
+		//public int SportsId { get; set; }
 	}
 }

@@ -1,11 +1,11 @@
 ﻿@using BettingApp.Data.Common.Enums
-@model BettingApp.Services.ViewModels.Competition.AddCompetitionInputModel
+@model BettingApp.Services.ViewModels.Competitor.AddTeamInputModel
 @{
-	ViewData["Title"] = "Add Competition";
+	ViewData["Title"] = "Add Team";
 }
 <main class="mt-5 w-50 mx-auto main bg-white">
-	<h1 class="text-center bg-bet p-2 top">Add new Competition</h1>
-	<form class="text-center font-weight-bold" method="post" asp-area="Moderation" asp-action="Add" asp-controller="Competitions">
+	<h1 class="text-center bg-bet p-2 top">Add new Team</h1>
+	<form class="text-center font-weight-bold" method="post" asp-area="Moderation" asp-action="AddTeam" asp-controller="Competitors">
 		<div class="p-2">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group w-50 mx-auto">
@@ -19,7 +19,7 @@
 					<option selected="selected" value="">Please select</option>
 				</select>
 				<span asp-validation-for="Country" class="text-danger"></span>
-			</div>
+			</div>			
 			<div class="form-group w-50 mx-auto">
 				<label asp-for="SportId"></label>
 				<select asp-for="SportId" id="sportsMenu">
@@ -28,11 +28,9 @@
 				<span asp-validation-for="SportId" class="text-danger"></span>
 			</div>
 			<div class="form-group w-50 mx-auto">
-				<label asp-for="SeasonId"></label>
-				<select asp-for="SeasonId" id="seasonMenu">
-					<option selected="selected" disabled>Please select</option>
-				</select>
-				<span asp-validation-for="SeasonId" class="text-danger"></span>
+				<label asp-for="LogoUrl"></label>
+				<input asp-for="LogoUrl" class="form-control" placeholder="Name..." />
+				<span asp-validation-for="LogoUrl" class="text-danger"></span>
 			</div>
 		</div>
 		<input type="submit" id="btn-login" class="bg-bet p-2 w-100 font-weight-bold" value="Add" />
@@ -41,7 +39,6 @@
 
 @section Scripts {
 	<script>
-		
 		$(document).ready(function () {
 
 			$.ajax({
@@ -53,24 +50,6 @@
 						$('#sportsMenu').append('<option value="' + value.Id + '">' + value.Name + '</option>');
 					});
 				}
-			});
-
-			//TODO show dropdown list only on change
-
-			$("#sportsMenu").change(function () {
-				var sportId = $("#sportsMenu").val();
-				console.log(sportId)
-				$.ajax({
-					url: "/Moderation/Seasons/AllSeasons",
-					data: { sport: sportId },
-					type: "POST",
-					dataType: "json",
-					success: function(seasons) {
-						$.each(seasons, function (index, value) {
-							$('#seasonMenu').append('<option value="' + value.Id + '">' + value.Name + '</option>');
-						});
-					}
-				});
 			});
 		})
 

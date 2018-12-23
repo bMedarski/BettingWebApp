@@ -1,6 +1,5 @@
 ﻿namespace Web.Areas.Moderation.Controllers
 {
-	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using BettingApp.Services.DataServices.Contracts;
@@ -30,10 +29,6 @@
 		[HttpPost]
 	    public async Task<IActionResult> Add(AddSeasonInputModel model)
 		{
-
-			//var start = DateTime.Parse(model.Start);
-
-
 		    var season = await this.SeasonsService.Add(model);
 		    return this.View();
 	    }

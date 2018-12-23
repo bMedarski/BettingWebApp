@@ -10,7 +10,7 @@ namespace Web.Filters
 		{
 			if (!context.ModelState.IsValid)
 			{
-				context.Result = new StatusCodeResult(400);
+				context.Result = new StatusCodeResult(404);
 			}
 		}
 	}

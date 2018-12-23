@@ -77,6 +77,7 @@
 
 			services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
 			services.AddScoped<ICompetitionsService, CompetitionsService>();
+			services.AddScoped<ICompetitorsService, CompetitorsService>();
 			services.AddScoped<ISeasonsService, SeasonsService>();
 			services.AddScoped<ISportsService, SportsService>();
 			services.AddScoped<IUsersService,UsersService>();
